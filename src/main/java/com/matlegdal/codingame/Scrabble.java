@@ -1,5 +1,6 @@
 package com.matlegdal.codingame;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,7 +18,7 @@ public class Scrabble {
 
         Word candidate = words.stream()
             .filter(word -> word.isContainedIn(letters))
-            .findFirst()
+            .max(Comparator.comparing(Word::getScore))
             .orElseThrow(NoMatchingWord::new);
 
         return candidate.asString();

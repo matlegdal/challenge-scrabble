@@ -1,6 +1,7 @@
 package com.matlegdal.codingame;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,6 +20,23 @@ class ScrabbleTest {
         String result = scrabble.resolve(LETTERS_FOR_WORD_PLUS_ONE);
 
         assertEquals(WORD, result);
+    }
+
+    @Test
+    void givenMultiplePossibleWords_whenResolving_thenChooseHighestPoints() {
+        String highestPoint = "ethane";
+        Scrabble scrabble = scrabbleWith(highestPoint, "hates", "sane", "ant");
+
+        String result = scrabble.resolve("etaenhs");
+
+        assertEquals(highestPoint, result);
+    }
+
+    @Test
+    void givenNoMatchingWord_thenThrowsNoMatchingWordException() {
+        Scrabble scrabble = scrabbleWith(ANOTHER_WORD);
+
+        assertThrows(NoMatchingWord.class, () -> scrabble.resolve(LETTERS_FOR_WORD_PLUS_ONE));
     }
 
     private Scrabble scrabbleWith(String... words) {
