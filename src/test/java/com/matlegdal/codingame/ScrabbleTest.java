@@ -33,6 +33,16 @@ class ScrabbleTest {
     }
 
     @Test
+    void givenWordsWithSamePoints_whenResolving_thenChooseFirst() {
+        String firstWord = "no";
+        Scrabble scrabble = scrabbleWith(firstWord, "on");
+
+        String result = scrabble.resolve("on");
+
+        assertEquals(firstWord, result);
+    }
+
+    @Test
     void givenNoMatchingWord_thenThrowsNoMatchingWordException() {
         Scrabble scrabble = scrabbleWith(ANOTHER_WORD);
 

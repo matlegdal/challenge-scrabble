@@ -1,11 +1,11 @@
 package com.matlegdal.codingame;
 
 import java.util.Comparator;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class Scrabble {
-    Set<Word> words = new HashSet<>();
+    Set<Word> words = new LinkedHashSet<>();
 
     public Scrabble(Set<String> words) {
         for (String string : words) {
